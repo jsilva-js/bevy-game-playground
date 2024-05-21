@@ -1,16 +1,18 @@
 use bevy::prelude::*;
-mod player;
 mod camera;
 mod world;
-use player::PlayerPlugin;
+mod player_plugin;
 use camera::CameraPlugin;
 use world::WorldPlugin;
-
+use player_plugin::PlayerPlugin;
+mod player;
 fn main() {
     App::new()
-    .add_plugins(DefaultPlugins)
-    .add_plugin(PlayerPlugin)
-    .add_plugin(CameraPlugin)
-    .add_plugin(WorldPlugin)
+    .add_plugins((
+        DefaultPlugins, 
+        PlayerPlugin,
+        CameraPlugin,
+        WorldPlugin
+    ))
     .run();
 }

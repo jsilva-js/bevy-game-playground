@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use bevy::render::mesh::Mesh;
-
+use bevy_math::prelude::Plane3d;
 
 pub fn spawn_floor(
     mut commands: Commands,
@@ -8,8 +8,8 @@ pub fn spawn_floor(
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     let floor = PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Plane::from_size(15.0))),
-        material: materials.add(Color::DARK_GREEN.into()),
+        mesh: meshes.add(Mesh::from(Plane3d::new(Vec3::new(15.0, 15.0, 15.0)))),
+        material: materials.add(Color::DARK_GREEN),
         ..default()
     };
 
