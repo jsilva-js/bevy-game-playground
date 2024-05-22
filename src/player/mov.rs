@@ -1,13 +1,13 @@
 use bevy::prelude::*;
-use super::main_p::MainPlayer;
+use super::main_p::{MainPlayer, Speed};
 
 pub fn player_movement(
     keys: Res<ButtonInput<KeyCode>>,
     time: Res<Time>,
-    mut player_q: Query<&mut Transform, With<MainPlayer>>,
+    mut player_q: Query<(&mut Transform, &Speed), With<MainPlayer>>,
     cam_q: Query<&Transform, (With<Camera3d>, Without<MainPlayer>)>
 ) {
-    for mut player_transform in player_q.iter_mut() {
+    for (mut player_transform, player_speed) in player_q.iter_mut() {
         let cam_transform = match cam_q.get_single() {
             Ok(cam) => cam,
             Err(e) => {
@@ -32,7 +32,9 @@ pub fn player_movement(
             direction += *-cam_transform.right();
         }
 
-        let movement = direction.normalize_or_zero() * 2.0 * time.delta_seconds();
+        direction.y = 0.0;
+
+        let movement = direction.normalize_or_zero() * player_speed.value * time.delta_seconds();
         player_transform.translation += movement;
     }
 }

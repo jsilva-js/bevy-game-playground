@@ -3,10 +3,10 @@ use bevy::prelude::*;
 pub fn spawn_light(mut commands: Commands) {
     let light = PointLightBundle {
         point_light: PointLight {
-            intensity: 2000.0,
+            shadows_enabled: true,
             ..default()
         },
-        transform: Transform::from_xyz(0.0, 5.0, 0.0),
+        transform: Transform::from_xyz(2.0, 2.0, 1.0),
         ..default()
     };
 
