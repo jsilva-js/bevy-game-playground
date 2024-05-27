@@ -23,8 +23,10 @@ fn orbit_mouse(
     mut mouse_evr: EventReader<MouseMotion>,
 ) {
     let mut rotation = Vec2::ZERO;
-    for ev in mouse_evr.iter() {
-        rotation = ev.delta;
+    let delta: Vec2 = mouse_evr.read().fold(Vec2::ZERO, |acc, e| acc + e.delta);
+    
+    for _ in mouse_evr.read() {
+        rotation = delta;
     }
 
     let Ok((cam, mut cam_transform)) = cam_q.get_single_mut() else { return };
@@ -62,7 +64,7 @@ fn orbit_mouse(
 
 fn zoom_mouse(mut scroll_evr: EventReader<MouseWheel>, mut cam_q: Query<&mut ThirdPersonCamera>) {
     let mut scroll = 0.0;
-    for ev in scroll_evr.iter() {
+    for ev in scroll_evr.read() {
         scroll += ev.y;
     }
 

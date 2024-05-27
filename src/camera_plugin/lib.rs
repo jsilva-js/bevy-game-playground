@@ -1,8 +1,8 @@
 
 
 use bevy::prelude::*;
-use crate::gamepad::{Gamepad, GamePadPlugin};
-use crate::mouse::{Mouse, MousePlugin};
+use crate::camera_plugin::gamepad::GamePadPlugin;
+use crate::camera_plugin::mouse::MousePlugin;
 
 pub struct ThirdPersonCameraPlugin;
 

@@ -1,7 +1,6 @@
 use std::f32::consts::PI;
-
 use crate::camera_plugin::lib::ThirdPersonCamera;
-
+use bevy::input::gamepad::Gamepad; // Add this line
 use bevy::{
     input::gamepad::{GamepadConnection::*, *},
     prelude::*,
@@ -45,7 +44,8 @@ pub fn connections(
     my_gamepad: Option<Res<MyGamepad>>,
     mut gamepad_evr: EventReader<GamepadConnectionEvent>,
 ) {
-    for ev in gamepad_evr.iter() {
+
+    for ev in gamepad_evr.read() {
         match &ev.connection {
             Connected(_info) => {
                 // if no gamepad is setup yet, use this one
