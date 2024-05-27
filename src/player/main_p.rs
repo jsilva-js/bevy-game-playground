@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::camera_plugin::ThirdPersonCameraTarget;
+use bevy_third_person_camera::*;
 
 #[derive(Component)]
 pub struct MainPlayer;

@@ -1,10 +1,11 @@
 use bevy::prelude::*;
 use world::WorldPlugin;
 use player_plugin::PlayerPlugin;
-use camera_plugin::ThirdPersonCameraPlugin;
 use camera::CameraPlugin;
+use bevy_third_person_camera::*;
+
+
 mod camera;
-mod camera_plugin;
 mod world;
 mod player_plugin;
 mod player;
