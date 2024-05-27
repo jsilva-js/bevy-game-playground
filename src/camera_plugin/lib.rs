@@ -4,6 +4,8 @@ use bevy::prelude::*;
 use crate::camera_plugin::gamepad::GamePadPlugin;
 use crate::camera_plugin::mouse::MousePlugin;
 
+use super::Zoom;
+
 pub struct ThirdPersonCameraPlugin;
 
 impl Plugin for ThirdPersonCameraPlugin {
@@ -19,6 +21,10 @@ pub struct ThirdPersonCamera {
     pub radius: f32,
     pub upside_down: bool,
     pub mouse_sensitivity: f32,
+    pub mouse_orbit_button_enabled: bool,
+    pub mouse_orbit_button: MouseButton,
+    pub sensitivity: Vec2,
+    pub zoom: Zoom,
 }
 
 impl Default for ThirdPersonCamera {
@@ -28,6 +34,10 @@ impl Default for ThirdPersonCamera {
             radius: 5.0,
             upside_down: false,
             mouse_sensitivity: 1.0,
+            mouse_orbit_button_enabled: false,
+            mouse_orbit_button: MouseButton::Middle,
+            sensitivity: Vec2::new(1.0, 1.0),
+            zoom: Zoom::new(1.5, 3.0),
         }
     }
 }
