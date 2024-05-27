@@ -1,5 +1,7 @@
 use bevy::prelude::*;
 
+use crate::camera_plugin::ThirdPersonCameraTarget;
+
 #[derive(Component)]
 pub struct MainPlayer;
 
@@ -22,7 +24,8 @@ pub fn spawn_player(
             ..default()
         },
         Speed { value: 2.0 },
-        MainPlayer
+        MainPlayer,
+        ThirdPersonCameraTarget
     );
     commands.spawn(player);
 }

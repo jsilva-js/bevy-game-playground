@@ -2,7 +2,8 @@ use bevy::prelude::*;
 use world::WorldPlugin;
 use player_plugin::PlayerPlugin;
 use camera_plugin::ThirdPersonCameraPlugin;
-
+use camera::CameraPlugin;
+mod camera;
 mod camera_plugin;
 mod world;
 mod player_plugin;
@@ -14,6 +15,7 @@ fn main() {
             DefaultPlugins,
             PlayerPlugin,
             WorldPlugin,
+            CameraPlugin,
             ThirdPersonCameraPlugin, // Add it here
         ))
         .run();
